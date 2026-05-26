@@ -1,0 +1,6 @@
+{
+  "name": "AkriliGrad",
+  "description": "Cloud-based platform for renting graduation acrylic boards connecting students and vendors.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
