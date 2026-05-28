@@ -2,8 +2,8 @@ import { Product, Order, Vendor, SaaSMetrics, User } from '../types';
 
 export const currentUser: User = {
   id: 'u1',
-  name: 'Budi Santoso',
-  email: 'budi@example.com',
+  name: 'Ocha Monicha',
+  email: 'ocha@example.com',
   role: 'STUDENT',
   avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100'
 };
@@ -81,8 +81,8 @@ export const orders: Order[] = [
     status: 'PROCESSING',
     orderDate: '2025-05-10',
     rentalDate: '2025-05-25',
-    studentName: 'Budi Santoso',
-    graduateName: 'Budi Santoso, S.Kom',
+    studentName: 'Ocha Monicha',
+    graduateName: 'Ocha Monicha, S.Kom',
     major: 'Informatika',
     faculty: 'FSM',
     message: 'Happy Graduation!',
@@ -99,7 +99,7 @@ export const orders: Order[] = [
     status: 'COMPLETED',
     orderDate: '2025-04-15',
     rentalDate: '2025-04-20',
-    studentName: 'Budi Santoso',
+    studentName: 'Ocha Monicha',
     graduateName: 'Ani Wijaya, S.Pd',
     major: 'Pendidikan Bahasa Inggris',
     faculty: 'FKIP',

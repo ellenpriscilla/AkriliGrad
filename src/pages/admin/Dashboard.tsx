@@ -89,7 +89,7 @@ export default function SuperAdminDashboard() {
             </div>
             <div>
                <h1 className="text-3xl font-black text-navy tracking-tight uppercase">Super Admin Hub</h1>
-               <p className="text-[#D4AF37] font-black uppercase tracking-widest text-[9px] mt-0.5">Situs Pusat Manajemen SaaS AkriliGrad</p>
+               <p className="text-[#D4AF37] font-black uppercase tracking-widest text-[9px] mt-0.5">Situs Pusat Manajemen AkriliGrad</p>
             </div>
          </div>
          <div className="flex bg-white p-1 rounded-2xl border border-beige">
@@ -113,12 +113,12 @@ export default function SuperAdminDashboard() {
           {/* Top Row stats */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <AdminStat label="Total Mitra Vendor" value={`${totalVendorsCount} Tenant`} diff="+1 Baru" icon={Store} color="bg-navy text-navy" />
-            <AdminStat label="SaaS MRR License" value={formatIDR(mrrValue)} diff="Aktif" icon={Users} color="bg-gold text-gold" />
+            <AdminStat label="MRR License" value={formatIDR(mrrValue)} diff="Aktif" icon={Users} color="bg-gold text-gold" />
             <AdminStat label="Transaksi Masuk" value={`${totalTransactionsCount} Rental`} diff="+4 Baru" icon={Zap} color="bg-amber-500 text-amber-600" />
             <AdminStat label="Komisi Platform (10%)" value={formatIDR(commissionRevenueValue)} diff="Real-time" icon={CreditCard} color="bg-emerald-500 text-emerald-600" />
           </div>
 
-          {/* SaaS metrics indicator boxes */}
+          {/* System metrics indicator boxes */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { label: "Biaya Subscription", value: "Rp50.000 /bln per vendor", desc: "Tarif standard non-premium", icon: ShieldCheck },
@@ -174,11 +174,11 @@ export default function SuperAdminDashboard() {
         </div>
       )}
 
-      {/* Vendors Subscription SaaS Management list */}
+      {/* Vendors Subscription Management list */}
       {activeTab === 'vendors' && (
         <div className="bg-white rounded-[32px] border border-beige p-8 shadow-sm">
            <div className="pb-4 border-b border-beige mb-6">
-              <h3 className="text-lg font-black text-navy uppercase">Kelola Lisensi Kedai Vendor (SaaS)</h3>
+              <h3 className="text-lg font-black text-navy uppercase">Kelola Lisensi Kedai Vendor</h3>
               <p className="text-slate-400 text-[10px] font-black uppercase tracking-wider">
                  Sebagai Super Admin, Anda memiliki kontrol penuh atas lisensi Rp50,000/bulan untuk mengakses database persewaan
               </p>
@@ -192,7 +192,7 @@ export default function SuperAdminDashboard() {
                        <th className="pb-4">Tanggal Gabung</th>
                        <th className="pb-4 text-center">Pesanan Terjawab</th>
                        <th className="pb-4 text-center">Akumulasi Omset</th>
-                       <th className="pb-4 text-center">Status Berlangganan SaaS</th>
+                       <th className="pb-4 text-center">Status Berlangganan</th>
                        <th className="pb-4 text-right">Opsi Lisensi</th>
                     </tr>
                  </thead>

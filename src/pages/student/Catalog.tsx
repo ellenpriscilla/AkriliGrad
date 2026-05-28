@@ -10,13 +10,36 @@ export default function Catalog() {
   const [selectedFilter, setSelectedFilter] = useState('Semua');
 
   // Categories/Tags from current products
-  const filters = ['Semua', 'Konveksi Mirror', 'Bulat', 'Oval', 'Persegi Panjang'];
+  const filters = ['Semua', 'Convex', 'Bulat', 'Oval', 'Persegi Panjang', 'Transparan', 'Mirror'];
 
   const filteredProducts = products.filter(p => {
-    const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    const nameLower = p.name.toLowerCase();
+    const descLower = p.description ? p.description.toLowerCase() : '';
+    const colorLower = p.color ? p.color.toLowerCase() : '';
+
+    const matchesSearch = nameLower.includes(searchTerm.toLowerCase()) || 
+                          p.vendorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           p.vendorId.toLowerCase().includes(searchTerm.toLowerCase());
-    if (selectedFilter === 'Semua') return matchesSearch;
-    return matchesSearch && p.name.toLowerCase().includes(selectedFilter.toLowerCase());
+    
+    if (!matchesSearch) return false;
+    if (selectedFilter === 'Semua') return true;
+
+    const filterLower = selectedFilter.toLowerCase();
+
+    // Specific filter mappings
+    if (filterLower === 'convex' || filterLower === 'convex mirror') {
+      return nameLower.includes('convex') || descLower.includes('convex') || descLower.includes('cembung');
+    }
+
+    if (filterLower === 'transparan') {
+      return nameLower.includes('standing akrilik transparan');
+    }
+
+    if (filterLower === 'mirror') {
+      return nameLower.includes('mirror') || descLower.includes('mirror') || colorLower.includes('mirror') || nameLower.includes('cermin');
+    }
+
+    return nameLower.includes(filterLower);
   });
 
   const formatIDR = (num: number) => {
@@ -84,7 +107,15 @@ export default function Catalog() {
               className="bg-white rounded-[40px] border border-beige overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-navy/5 hover:-translate-y-1.5 transition-all p-2.5"
             >
               <div className="aspect-[4/5] relative overflow-hidden rounded-[32px] bg-slate-50">
-                 <img src={p.imageUrl} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                 <img 
+                   src={p.image || p.imageUrl} 
+                   alt={p.name} 
+                   className={`w-full h-full object-cover transition-transform duration-700 ${
+                     p.id === 'p4' 
+                       ? 'origin-top scale-[1.18] group-hover:scale-[1.24]' 
+                       : 'group-hover:scale-105'
+                   }`} 
+                 />
                  
                  <div className="absolute top-4 right-4">
                     <button className="p-2.5 bg-white/95 backdrop-blur-md text-[#D4AF37] rounded-2xl shadow-lg hover:bg-white">
@@ -102,7 +133,7 @@ export default function Catalog() {
               <div className="p-5 text-left">
                 <div className="flex items-center justify-between mb-2">
                    <div className="text-[10px] font-black text-[#0B3D91] uppercase tracking-widest flex items-center gap-1">
-                     <Store className="w-3.5 h-3.5 text-[#D4AF37]" /> {p.vendorId}
+                     <Store className="w-3.5 h-3.5 text-[#D4AF37]" /> {p.vendorName || p.vendorId}
                    </div>
                    <div className="flex items-center gap-1.5 bg-yellow-50 text-gold px-2 py-0.5 rounded-lg">
                      <Star className="w-3 h-3 fill-current" />
@@ -112,12 +143,12 @@ export default function Catalog() {
                 
                 <h3 className="font-extrabold text-navy text-lg tracking-tight group-hover:text-[#0B3D91] transition-colors uppercase leading-snug mb-4">{p.name}</h3>
                 
-                <div className="flex items-center justify-between pt-2 border-t border-beige">
+                <div className="flex items-center justify-between gap-3 pt-2 border-t border-beige">
                    <div>
                      <div className="text-[9px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">Tarif Sewa</div>
                      <div className="text-navy font-black text-xl tracking-tight">{formatIDR(p.price)}</div>
                    </div>
-                   <div className="px-5 py-2 bg-navy text-white text-[10px] font-black uppercase tracking-widest rounded-xl group-hover:bg-gold group-hover:text-slate-950 transition-all">
+                   <div className="px-3 py-1.5 bg-navy text-[#FFF8E7] text-[9px] font-extrabold uppercase tracking-widest rounded-lg group-hover:bg-gold group-hover:text-navy transition-all shrink-0 cursor-pointer">
                       Sewa Sekarang
                    </div>
                 </div>

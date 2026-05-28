@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
+import HomePage from './pages/HomePage';
 import StudentDashboard from './pages/student/Dashboard';
 import Catalog from './pages/student/Catalog';
 import ProductDetail from './pages/student/ProductDetail';
@@ -15,7 +15,7 @@ function App() {
       <Router>
         <SaaSSimulatorBar />
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<HomePage />} />
           
           {/* Student Routes */}
           <Route path="/student/dashboard" element={<DashboardLayout><StudentDashboard /></DashboardLayout>} />

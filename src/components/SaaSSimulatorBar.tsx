@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDemoData } from '../context/DemoContext';
+import { AkriliGradLogo } from './AkriliGradLogo';
 import { 
   ShieldCheck, 
   Store, 
@@ -24,54 +25,45 @@ export default function SaaSSimulatorBar() {
   const roles = [
     { 
       id: 'landing', 
-      label: '1. Landing Page (SaaS)', 
+      label: '1. Home Page', 
       path: '/', 
       icon: Globe,
-      color: 'bg-indigo-500', 
-      desc: 'Pemasaran SaaS untuk Vendor'
+      color: 'bg-gold', 
+      desc: 'Pemasaran AkriliGrad'
     },
     { 
       id: 'catalog', 
-      label: '2. Student Catalog', 
+      label: '2. Student Order Page', 
       path: '/student/catalog', 
       icon: ShoppingBag,
-      color: 'bg-emerald-500', 
-      desc: 'Katalog Sewa Akrilik Wisuda'
-    },
-    { 
-      id: 'student_dashboard', 
-      label: '3. Student Dashboard', 
-      path: '/student/dashboard', 
-      icon: User,
-      color: 'bg-amber-500', 
-      desc: 'Cek Status & Progress Sewa'
+      color: 'bg-[#D4AF37]', 
+      desc: 'Katalog Custom Mahasiswa'
     },
     { 
       id: 'vendor', 
-      label: '4. Vendor Dashboard', 
+      label: '3. Vendor Dashboard', 
       path: '/vendor/dashboard', 
       icon: Store,
-      color: 'bg-blue-600', 
-      desc: 'Manajemen Keuangan & Jadwal'
+      color: 'bg-[#D4AF37]', 
+      desc: 'Sistem Manajemen Vendor'
     },
     { 
       id: 'super_admin', 
-      label: '5. Super Admin API Hub', 
+      label: '4. AkriliGrad Admin', 
       path: '/admin/dashboard', 
       icon: ShieldCheck,
-      color: 'bg-gold', 
-      desc: 'SaaS Platform Owner Metrics'
+      color: 'bg-[#B8860B]', 
+      desc: 'Platform Owner Metrics'
     }
   ];
 
   return (
     <div className="bg-slate-900 text-white border-b-2 border-gold/40 sticky top-0 z-50 shadow-2xl font-sans selection:bg-gold/30 selection:text-white">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap gap-4 items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gold text-slate-900 flex items-center justify-center font-black text-sm shadow-md animate-pulse">⚡</div>
+        <div className="flex items-center gap-2.5">
+          <AkriliGradLogo textColor="none" size={30} className="-my-1 drop-shadow" />
           <div>
-             <div className="text-xs font-black tracking-widest text-gold uppercase leading-none">AkriliGrad SaaS</div>
-             <div className="text-[9px] font-bold text-slate-400 uppercase leading-none mt-1">Simulasi 3 Peran & Real State Flow</div>
+             <div className="text-xs font-black tracking-widest text-gold uppercase leading-none">AkriliGrad System</div>
           </div>
         </div>
 
@@ -122,7 +114,7 @@ export default function SaaSSimulatorBar() {
                       }}
                       className={`w-full text-left px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-between ${
                         v.id === selectedVendorId 
-                          ? 'bg-blue-50 text-blue-700 border-l-4 border-blue-600' 
+                          ? 'bg-yellow-50 text-[#B8860B] border-l-4 border-[#D4AF37]' 
                           : 'hover:bg-slate-50 text-slate-700'
                       }`}
                     >

@@ -22,7 +22,7 @@ import { useDemoData } from '../../context/DemoContext';
 export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { products, placeOrder } = useDemoData();
+  const { products, placeOrder, currentStudent } = useDemoData();
   
   // Find product from dynamic context state
   const product = products.find(p => p.id === id) || products[0] || {
@@ -32,7 +32,7 @@ export default function ProductDetail() {
     name: 'Standing Akrilik Bulat',
     description: 'Papan akrilik bulat wisuda estetik dengan tripod kayu premium.',
     price: 70000,
-    imageUrl: 'https://images.unsplash.com/photo-1523050853063-880c6934a415?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://media.karousell.com/media/photos/products/2024/6/19/paket_usaha_papan_akrilik_1718797062_1b65e9df_progressive.jpg',
     stock: 5,
     size: '40x60 cm',
     color: 'Emas'
@@ -45,7 +45,7 @@ export default function ProductDetail() {
 
   // Student specific parameters
   const [studentDetails, setStudentDetails] = useState({
-    studentName: 'Ellen Priscilla',
+    studentName: currentStudent ? currentStudent.name : 'Ellen Priscilla',
     whatsapp: '082188992211',
     university: 'Universitas Bangka Belitung',
     pickupDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 2 days from now
@@ -55,9 +55,9 @@ export default function ProductDetail() {
 
   const [formData, setFormData] = useState({
     greeting: 'Happy Graduation',
-    name: 'Ellen Priscilla, S.Kom',
-    major: 'Teknik Informatika',
-    year: 'Angkatan 2024'
+    name: currentStudent ? `${currentStudent.name}, S.Bns` : 'Ellen Priscilla, S.Bns',
+    major: currentStudent ? currentStudent.occupation : 'Bisnis Digital',
+    year: 'Angkatan 2023'
   });
 
   // Local AI emulation (no external API crash risk)
@@ -114,7 +114,7 @@ export default function ProductDetail() {
 
   return (
     <div className="space-y-6">
-      <Link to="/student/catalog" className="inline-flex items-center gap-2 text-[#0B3D91] font-black text-xs uppercase tracking-widest hover:text-[#D4AF37] transition-colors bg-white px-5 py-2 rounded-xl border border-beige">
+      <Link to="/student/catalog" className="inline-flex items-center gap-2 text-[#B8860B] font-black text-xs uppercase tracking-widest hover:bg-[#FFF8E7] transition-all bg-white px-5 py-2 rounded-xl border border-[#D4AF37]/20">
         <ArrowLeft className="w-4 h-4 text-[#D4AF37]" /> Kembali ke Katalog
       </Link>
 
@@ -125,7 +125,7 @@ export default function ProductDetail() {
             <div className="aspect-[4/5] rounded-[40px] overflow-hidden bg-slate-100 relative">
                <img 
                  src={product.imageUrl || product.image} 
-                 className="w-full h-full object-cover transition-transform group-hover:scale-102 duration-500"
+                 className={`w-full h-full object-cover transition-transform duration-500 ${product.id === 'p4' ? 'origin-top scale-[1.18] group-hover:scale-[1.22]' : 'group-hover:scale-102'}`}
                  alt="Product board" 
                />
                
@@ -188,8 +188,8 @@ export default function ProductDetail() {
                       onClick={() => setSelectedSize(size)}
                       className={`px-5 py-2 rounded-xl font-black text-[10px] uppercase tracking-widest border transition-all ${
                         selectedSize === size 
-                          ? 'bg-navy text-white border-navy shadow-md shadow-navy/20' 
-                          : 'bg-white text-navy border-beige hover:border-gold'
+                          ? 'bg-[#D4AF37] text-white border-[#D4AF37] shadow-md shadow-gold/15' 
+                          : 'bg-white text-[#1F2937] border-beige hover:border-[#D4AF37]'
                       }`}
                     >
                       {size}
@@ -369,7 +369,7 @@ export default function ProductDetail() {
 
             <button 
               type="submit"
-              className="w-full py-5 bg-[#0B3D91] text-white rounded-[24px] font-black text-sm uppercase tracking-widest shadow-2xl shadow-blue-900/40 flex items-center justify-center gap-3 hover:brightness-110 hover:-translate-y-1 transition-all active:scale-[0.98]"
+              className="w-full py-5 bg-[#D4AF37] hover:bg-[#B8860B] text-white rounded-[24px] font-black text-sm uppercase tracking-widest shadow-2xl shadow-gold/20 flex items-center justify-center gap-3 hover:-translate-y-1 transition-all active:scale-[0.98]"
             >
                <ShoppingCart className="w-5 h-5 text-[#D4AF37]" /> Konfirmasi & Pesan Papan
             </button>

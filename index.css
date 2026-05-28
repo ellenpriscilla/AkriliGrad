@@ -1,28 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #0B2545;
-  --color-beige: #F4EAE1;
   --color-gold: #D4AF37;
+  --color-darkgold: #B8860B;
+  --color-softcream: #FFF8E7;
+  --color-darktext: #1F2937;
+  --color-lightgray: #F5F5F5;
+  --color-navy: #1F2937;
+  --color-beige: #FFF8E7;
   
   --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-elegant: 'Cormorant Garamond', Georgia, serif;
 }
 
 @layer base {
   body {
-    @apply bg-[var(--color-beige)] text-[var(--color-navy)] font-sans;
+    @apply bg-white text-[var(--color-darktext)] font-sans;
   }
 }
 
 .glass-card {
-  @apply bg-white/80 backdrop-blur-md border border-[var(--color-beige)] shadow-xl;
+  @apply bg-white border border-[var(--color-softcream)] shadow-md;
 }
 
 .btn-primary {
-  @apply bg-[var(--color-navy)] hover:opacity-90 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg active:scale-95;
+  @apply bg-[var(--color-gold)] hover:bg-[var(--color-darkgold)] text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg active:scale-95;
 }
 
 .btn-gold {
-  @apply bg-[var(--color-gold)] hover:brightness-110 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg shadow-gold/20 active:scale-95;
+  @apply bg-[var(--color-gold)] hover:bg-[var(--color-darkgold)] text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg shadow-gold/20 active:scale-95;
 }

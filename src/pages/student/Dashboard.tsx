@@ -28,12 +28,14 @@ const StatCard = ({ label, value, icon: Icon, color }: { label: string, value: s
 );
 
 export default function StudentDashboard() {
-  const { orders, products, verifyOrderPayment } = useDemoData();
+  const { orders, products, verifyOrderPayment, currentStudent } = useDemoData();
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [uploadProgress, setUploadProgress] = useState<string | null>(null);
 
-  // Filter orders for Ellen Priscilla (simulated logging student)
-  const myOrders = orders.filter(o => o.studentName === 'Ellen Priscilla');
+  const studentLocalName = currentStudent ? currentStudent.name : 'Ellen Priscilla';
+
+  // Filter orders for the logged-in student (or default Ellen Priscilla)
+  const myOrders = orders.filter(o => o.studentName === studentLocalName);
 
   // Compute metrics
   const activeCount = myOrders.filter(o => o.status !== 'Completed').length;
@@ -87,7 +89,7 @@ export default function StudentDashboard() {
              <h1 className="text-3xl font-black text-navy tracking-tight uppercase">Dashboard Mahasiswa</h1>
           </div>
           <p className="text-navy/40 font-black text-[10px] uppercase tracking-widest text-[#D4AF37]">
-             Pemesan Aktif: Ellen Priscilla • Kampus Bangka Belitong
+             Pemesan Aktif: {studentLocalName} • Kampus Bangka Belitong
           </p>
         </div>
         <div className="flex items-center gap-2 text-[10px] font-black text-gold bg-white px-4 py-2 rounded-xl border border-beige shadow-sm uppercase tracking-widest">
